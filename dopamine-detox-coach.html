@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dopamine Detox | أعد ضبط عقلك</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c0392b;
+            --primary-light: #e74c3c;
+            --primary-dark: #7b241c;
+            --accent: #f39c12;
+            --accent-soft: #fef9e7;
+            --charcoal: #1a1a2e;
+            --charcoal-mid: #16213e;
+            --purple: #6c3483;
+            --purple-light: #9b59b6;
+            --purple-soft: #f5eef8;
+            --bg: #f9f9f9;
+            --bg-card: #ffffff;
+            --text-main: #1a1a2e;
+            --text-soft: #555e7d;
+            --cream: #fdfaf4;
+            --green: #1e8449;
+            --green-soft: #eafaf1;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0; right: 0; left: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            height: 68px;
+            background: rgba(249,249,249,0.94);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(192,57,43,0.1);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-soft);
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 30px;
+            transition: all 0.25s;
+        }
+
+        .nav-links a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(160deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        /* Noise texture overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        /* Brain circuit lines */
+        .circuit {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .circuit svg {
+            position: absolute;
+            width: 100%; height: 100%;
+            opacity: 0.06;
+        }
+
+        /* Dopamine molecules floating */
+        .molecules {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .mol {
+            position: absolute;
+            border-radius: 50%;
+            animation: molFloat var(--dur) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes molFloat {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
+        }
+
+        /* Glitch effect on title */
+        .hero-title {
+            font-size: clamp(2.2rem, 7vw, 4.5rem);
+            font-weight: 900;
+            color: white;
+            line-height: 1.15;
+            max-width: 750px;
+            margin-bottom: 22px;
+            animation: fadeDown 0.9s ease 0.1s both;
+            position: relative;
+        }
+
+        .hero-title .highlight {
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title .highlight::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; right: -2px;
+            color: var(--primary-light);
+            clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+            animation: glitch 4s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translateX(0); opacity: 0; }
+            92% { transform: translateX(-3px); opacity: 0.7; }
+            94% { transform: translateX(3px); opacity: 0.7; }
+            96% { transform: translateX(0); opacity: 0; }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(192,57,43,0.2);
+            border: 1px solid rgba(231,76,60,0.4);
+            color: #f1948a;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 6px 20px;
+            border-radius: 30px;
+            margin-bottom: 28px;
+            animation: fadeDown 0.8s ease both;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 530px;
+            line-height: 1.9;
+            animation: fadeDown 1s ease 0.2s both;
+        }
+
+        .hero-cta {
+            margin-top: 38px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeDown 1s ease 0.3s both;
+        }
+
+        .btn-red {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(192,57,43,0.4);
+        }
+
+        .btn-red:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 35px rgba(192,57,43,0.5);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.25);
+            padding: 12px 36px;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            animation: fadeDown 1.2s ease 0.6s both;
+        }
+
+        .scroll-indicator span {
+            color: rgba(255,255,255,0.3);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .scroll-line {
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; height: 30px; }
+            50% { opacity: 1; height: 50px; }
+        }
+
+        /* ===== DOPAMINE METER ===== */
+        .meter-section {
+            background: var(--charcoal);
+            padding: 50px 0;
+        }
+
+        .meter-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        .meter-title {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .meter-bar-wrap {
+            background: rgba(255,255,255,0.06);
+            border-radius: 50px;
+            height: 14px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            max-width: 600px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .meter-bar {
+            height: 100%;
+            border-radius: 50px;
+            background: linear-gradient(90deg, var(--green), var(--accent), var(--primary));
+            animation: meterGrow 2s ease-out both;
+            width: 85%;
+        }
+
+        @keyframes meterGrow {
+            from { width: 0%; }
+            to { width: 85%; }
+        }
+
+        .meter-labels {
+            display: flex;
+            justify-content: space-between;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .meter-labels span {
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .label-low { color: var(--green); }
+        .label-high { color: var(--primary-light); }
+        .label-overloaded { color: #e74c3c; }
+
+        .meter-desc {
+            margin-top: 14px;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+        }
+
+        /* ===== SECTIONS ===== */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section { padding: 90px 0; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 5px 16px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+
+        .tag-red { background: #fdecea; color: var(--primary); border: 1px solid #f5c6c2; }
+        .tag-purple { background: var(--purple-soft); color: var(--purple); border: 1px solid #d7bde2; }
+        .tag-green { background: var(--green-soft); color: var(--green); border: 1px solid #a9dfbf; }
+        .tag-amber { background: #fef9e7; color: #b7770d; border: 1px solid #f9e4b7; }
+
+        .section-title {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 900;
+            color: var(--charcoal);
+            line-height: 1.25;
+        }
+
+        .section-sub {
+            margin-top: 12px;
+            color: var(--text-soft);
+            font-size: 0.97rem;
+            max-width: 480px;
+            margin-right: auto;
+            margin-left: auto;
+            line-height: 1.85;
+        }
+
+        /* ===== WHAT IS DOPAMINE ===== */
+        .explainer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .explainer-grid { grid-template-columns: 1fr; }
+        }
+
+        .explainer-visual {
+            background: linear-gradient(135deg, var(--charcoal), var(--charcoal-mid));
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brain-emoji {
+            font-size: 6rem;
+            display: block;
+            margin-bottom: 20px;
+            animation: brainPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes brainPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(192,57,43,0.5)); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 25px rgba(192,57,43,0.9)); }
+        }
+
+        .brain-labels {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .brain-label {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 20px;
+        }
+
+        .brain-label.hot { background: rgba(192,57,43,0.25); border-color: rgba(231,76,60,0.4); color: #f1948a; }
+
+        .explainer-text h3 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+        }
+
+        .explainer-text p {
+            color: var(--text-soft);
+            font-size: 0.92rem;
+            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+
+        .fact-box {
+            background: var(--accent-soft);
+            border-right: 4px solid var(--accent);
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin-top: 20px;
+        }
+
+        .fact-box p {
+            color: #7d6608;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* ===== TRIGGERS ===== */
+        .bg-soft-red { background: #fff5f5; }
+
+        .triggers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .trigger-card {
+            background: white;
+            border-radius: 18px;
+            padding: 26px 22px;
+            border: 1px solid rgba(192,57,43,0.08);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trigger-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s;
+        }
+
+        .trigger-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(192,57,43,0.1);
+        }
+
+        .trigger-card:hover::before { transform: scaleX(1); }
+
+        .trigger-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .trigger-icon {
+            width: 46px; height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .t-red { background: #fdecea; }
+        .t-orange { background: #fef5e7; }
+        .t-purple { background: var(--purple-soft); }
+
+        .trigger-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .trigger-card p {
+            color: var(--text-soft);
+            font-size: 0.86rem;
+            line-height: 1.85;
+        }
+
+        .dopamine-spike {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+
+        .spike-high { background: #fdecea; color: var(--primary); }
+        .spike-med { background: #fef5e7; color: #935116; }
+        .spike-low { background: var(--green-soft); color: var(--green); }
+
+        /* ===== PROBLEMS ===== */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .problem-card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px 24px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(108,52,131,0.1);
+        }
+
+        .problem-num {
+            position: absolute;
+            top: 16px; left: 20px;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--purple-soft);
+            line-height: 1;
+        }
+
+        .problem-icon {
+            background: var(--purple-soft);
+            width: 50px; height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            margin-bottom: 14px;
+        }
+
+        .problem-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--purple);
+            margin-bottom: 10px;
+        }
+
+        .problem-card p {
+            color: var(--text-soft);
+            font-size: 0.86rem;
+            line-height: 1.85;
+        }
+
+        /* ===== HOW DETOX WORKS ===== */
+        .detox-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .detox-step {
+            background: white;
+            border-radius: 20px;
+            padding: 28px 22px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .detox-step:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 14px 40px rgba(192,57,43,0.1);
+        }
+
+        .step-arrow {
+            position: absolute;
+            top: 50%; left: -18px;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        .detox-step-num {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin: 0 auto 16px;
+        }
+
+        .detox-step h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+        }
+
+        .detox-step p {
+            color: var(--text-soft);
+            font-size: 0.85rem;
+            line-height: 1.85;
+        }
+
+        /* ===== PROTOCOL ===== */
+        .bg-charcoal {
+            background: linear-gradient(160deg, var(--charcoal), var(--charcoal-mid));
+        }
+
+        .protocol-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .protocol-grid { grid-template-columns: 1fr; }
+        }
+
+        .protocol-box {
+            border-radius: 20px;
+            padding: 32px 28px;
+        }
+
+        .protocol-avoid {
+            background: rgba(192,57,43,0.12);
+            border: 1px solid rgba(231,76,60,0.2);
+        }
+
+        .protocol-do {
+            background: rgba(30,132,73,0.1);
+            border: 1px solid rgba(30,132,73,0.2);
+        }
+
+        .protocol-box h3 {
+            font-size: 1.1rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .protocol-avoid h3 { color: #f1948a; }
+        .protocol-do h3 { color: #7dcea0; }
+
+        .protocol-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .protocol-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: rgba(255,255,255,0.65);
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+
+        .protocol-list li::before {
+            content: '✕';
+            flex-shrink: 0;
+            width: 22px; height: 22px;
+            background: rgba(192,57,43,0.3);
+            color: #f1948a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 900;
+            margin-top: 1px;
+        }
+
+        .protocol-do .protocol-list li::before {
+            content: '✓';
+            background: rgba(30,132,73,0.3);
+            color: #7dcea0;
+            font-size: 0.7rem;
+        }
+
+        /* ===== LEVELS ===== */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .level-card {
+            border-radius: 20px;
+            padding: 30px 26px;
+            transition: all 0.3s;
+        }
+
+        .level-card:hover { transform: translateY(-4px); }
+
+        .level-easy {
+            background: var(--green-soft);
+            border: 2px solid #a9dfbf;
+        }
+
+        .level-medium {
+            background: var(--accent-soft);
+            border: 2px solid #f9e4b7;
+        }
+
+        .level-hard {
+            background: #fdecea;
+            border: 2px solid #f5c6c2;
+        }
+
+        .level-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+
+        .badge-easy { background: var(--green); color: white; }
+        .badge-medium { background: var(--accent); color: white; }
+        .badge-hard { background: var(--primary); color: white; }
+
+        .level-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .level-easy h3 { color: var(--green); }
+        .level-medium h3 { color: #935116; }
+        .level-hard h3 { color: var(--primary-dark); }
+
+        .level-card .duration {
+            font-size: 0.8rem;
+            font-weight: 700;
+            opacity: 0.6;
+            margin-bottom: 12px;
+        }
+
+        .level-card p {
+            font-size: 0.87rem;
+            line-height: 1.85;
+            color: var(--text-main);
+            opacity: 0.75;
+        }
+
+        .level-activities {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .activity-tag {
+            background: rgba(0,0,0,0.06);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 12px;
+            border-radius: 20px;
+            color: var(--text-main);
+            opacity: 0.8;
+        }
+
+        /* ===== BENEFITS ===== */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 18px;
+            padding: 26px 22px;
+            border: 1px solid rgba(30,132,73,0.1);
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 35px rgba(30,132,73,0.1);
+            border-color: var(--green);
+        }
+
+        .benefit-icon {
+            background: var(--green-soft);
+            width: 50px; height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 14px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            color: var(--text-soft);
+            font-size: 0.86rem;
+            line-height: 1.85;
+        }
+
+        .benefit-timeline {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            background: var(--green-soft);
+            color: var(--green);
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+
+        /* ===== QUOTE ===== */
+        .quote-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2c0a0a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-section::before {
+            content: '⚡';
+            position: absolute;
+            top: -30px; right: 4%;
+            font-size: 16rem;
+            opacity: 0.04;
+            line-height: 1;
+        }
+
+        .quote-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        .quote-text {
+            font-size: clamp(1.2rem, 3vw, 1.65rem);
+            font-weight: 700;
+            color: white;
+            line-height: 1.75;
+            margin-bottom: 18px;
+        }
+
+        .quote-author { color: var(--accent); font-size: 0.88rem; font-weight: 600; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--charcoal);
+            padding: 30px 24px;
+            text-align: center;
+        }
+
+        footer p { color: rgba(255,255,255,0.3); font-size: 0.83rem; }
+        footer strong { color: var(--accent); }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-22px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0 18px; }
+            .nav-links a { padding: 6px 10px; font-size: 0.78rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">⚡</div>
+            Dopamine Detox
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#what">ما هو؟</a></li>
+            <li><a href="#triggers">المُحفّزات</a></li>
+            <li><a href="#protocol">البروتوكول</a></li>
+            <li><a href="#levels">المستويات</a></li>
+            <li><a href="#benefits">الفوائد</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header id="home" class="hero">
+        <div class="circuit">
+            <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+                <circle cx="600" cy="350" r="200" fill="none" stroke="rgba(192,57,43,0.6)" stroke-width="1" stroke-dasharray="8 4"/>
+                <circle cx="600" cy="350" r="300" fill="none" stroke="rgba(192,57,43,0.3)" stroke-width="1" stroke-dasharray="5 8"/>
+                <circle cx="600" cy="350" r="400" fill="none" stroke="rgba(192,57,43,0.15)" stroke-width="1" stroke-dasharray="3 12"/>
+                <line x1="200" y1="200" x2="1000" y2="500" stroke="rgba(243,156,18,0.15)" stroke-width="1"/>
+                <line x1="1000" y1="200" x2="200" y2="500" stroke="rgba(243,156,18,0.1)" stroke-width="1"/>
+            </svg>
+        </div>
+        <div class="molecules" id="molContainer"></div>
+
+        <div class="hero-badge">🎓 نشاط Healthy Coaching — كلية علوم الصحة</div>
+        <h1 class="hero-title">
+            أعد ضبط<br>
+            <span class="highlight" data-text="عقلك">عقلك ⚡</span>
+        </h1>
+        <p>في عالم مليء بالمنبّهات الرقمية، دماغك تعب. Dopamine Detox هو طريقك لاستعادة التركيز والسيطرة على نفسك من جديد.</p>
+        <div class="hero-cta">
+            <a href="#protocol" class="btn-red">ابدأ الديتوكس</a>
+            <a href="#what" class="btn-ghost">اعرف أكثر</a>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>تمرير</span>
+            <div class="scroll-line"></div>
+        </div>
+    </header>
+
+    <!-- METER -->
+    <div class="meter-section">
+        <div class="meter-inner">
+            <div class="meter-title">⚡ مستوى الدوبامين في الدماغ الحديث</div>
+            <div class="meter-bar-wrap">
+                <div class="meter-bar"></div>
+            </div>
+            <div class="meter-labels">
+                <span class="label-low">طبيعي</span>
+                <span class="label-high">مرتفع</span>
+                <span class="label-overloaded">◄ أنت هنا — مُثقَل جداً</span>
+            </div>
+            <p class="meter-desc">الدماغ المُدمن على المحفّزات السريعة يفقد القدرة على الاستمتاع بالأشياء البسيطة</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- WHAT IS DOPAMINE -->
+        <section id="what" class="section">
+            <div class="section-header reveal">
+                <div class="section-tag tag-red">🧠 العلم وراءه</div>
+                <h2 class="section-title">ما هو الدوبامين؟ وما المشكلة؟</h2>
+            </div>
+            <div class="explainer-grid">
+                <div class="explainer-visual reveal">
+                    <span class="brain-emoji">🧠</span>
+                    <div class="brain-labels">
+                        <span class="brain-label hot">دوبامين ↑↑</span>
+                        <span class="brain-label">سيروتونين ↓</span>
+                        <span class="brain-label">تركيز ↓</span>
+                        <span class="brain-label hot">ملل سريع</span>
+                        <span class="brain-label">إرادة ↓↓</span>
+                        <span class="brain-label hot">إدمان ↑</span>
+                        <span class="brain-label">صبر ↓</span>
+                        <span class="brain-label hot">مكافأة فورية</span>
+                    </div>
+                </div>
+                <div class="explainer-text reveal">
+                    <h3>الدوبامين — ليس هرمون السعادة</h3>
+                    <p>كثيرون يعتقدون أن الدوبامين هو هرمون السعادة — لكن الحقيقة أنه <strong>هرمون التوقّع والبحث</strong>. يُفرز عندما تتوقع مكافأة، ويدفعك للبحث عنها باستمرار.</p>
+                    <p>المشكلة أن التكنولوجيا الحديثة — سوشيال ميديا، ألعاب، إشعارات — صُمّمت خصيصاً لاستغلال هذا النظام وجعله مُتضخّم. نتيجة؟ دماغك يحتاج محفّزات أقوى وأسرع باستمرار.</p>
+                    <div class="fact-box">
+                        <p>⚠️ عندما يتعوّد الدماغ على محفّزات عالية، يصبح التركيز على مهمة بسيطة أو الاستمتاع بلحظة هادئة مستحيلاً تقريباً.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- TRIGGERS -->
+    <div class="bg-soft-red">
+        <div class="container">
+            <section id="triggers" class="section">
+                <div class="section-header reveal">
+                    <div class="section-tag tag-red">⚠️ احذر منها</div>
+                    <h2 class="section-title">المُحفّزات التي تُخرب دماغك</h2>
+                    <p class="section-sub">هذه الأشياء تُطلق دوبامين ضخم وسريع — وتُعيد برمجة دماغك على الإدمان</p>
+                </div>
+                <div class="triggers-grid">
+                    <div class="trigger-card reveal">
+                        <div class="trigger-header">
+                            <div class="trigger-icon t-red">📱</div>
+                            <h3>السوشيال ميديا</h3>
+                        </div>
+                        <p>كل إعجاب وتعليق يُطلق نبضة دوبامين. الخوارزميات تُبقيك مدمناً بتصميم متعمّد.</p>
+                        <span class="dopamine-spike spike-high">⬆️ ارتفاع شديد</span>
+                    </div>
+                    <div class="trigger-card reveal">
+                        <div class="trigger-header">
+                            <div class="trigger-icon t-red">🎮</div>
+                            <h3>ألعاب الفيديو</h3>
+                        </div>
+                        <p>نظام المكافآت السريعة والمستويات يُحاكي بدقة مراكز الإدمان في الدماغ.</p>
+                        <span class="dopamine-spike spike-high">⬆️ ارتفاع شديد</span>
+                    </div>
+                    <div class="trigger-card reveal">
+                        <div class="trigger-header">
+                            <div class="trigger-icon t-orange">🍿</div>
+                            <h3>Binge Watching</h3>
+                        </div>
+                        <p>مشاهدة حلقة تلو الأخرى تُعطّل نظام التوقف الطبيعي في الدماغ.</p>
+                        <span class="dopamine-spike spike-med">⬆️ ارتفاع متوسط</span>
+                    </div>
+                    <div class="trigger-card reveal">
+                        <div class="trigger-header">
+                            <div class="trigger-icon t-orange">🍫</div>
+                            <h3>السكر والجنك فود</h3>
+                        </div>
+                        <p>أطعمة مُصنّعة لاستغلال نظام الدوبامين — تُسبّب الإدمان مثل المخدرات تماماً.</p>
+                        <span class="dopamine-spike spike-med">⬆️ ارتفاع متوسط</span>
+                    </div>
+                    <div class="trigger-card reveal">
+                        <div class="trigger-header">
+                            <div class="trigger-icon t-purple">🔔</div>
+                            <h3>الإشعارات المستمرة</h3>
+                        </div>
+                        <p>كل إشعار يُحفّز فضولك ويُخرجك من حالة التركيز — مصممة لتقطيع انتباهك.</p>
+                        <span class="dopamine-spike spike-low">⬆️ ارتفاع مستمر</span>
+                    </div>
+                    <div class="trigger-card reveal">
+                        <div class="trigger-header">
+                            <div class="trigger-icon t-purple">🛒</div>
+                            <h3>التسوق الإلكتروني</h3>
+                        </div>
+                        <p>مجرد التصفح والبحث يُطلق دوبامين — أحياناً الشراء أقل متعة من مجرد البحث.</p>
+                        <span class="dopamine-spike spike-low">⬆️ ارتفاع مستمر</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- PROBLEMS -->
+        <section class="section">
+            <div class="section-header reveal">
+                <div class="section-tag tag-purple">🚨 ماذا يحدث؟</div>
+                <h2 class="section-title">أعراض الدوبامين الزائد</h2>
+                <p class="section-sub">هل تعاني من واحدة منها؟ هذا ما يفعله الإفراط في المحفّزات بدماغك</p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card reveal">
+                    <div class="problem-num">01</div>
+                    <div class="problem-icon">😴</div>
+                    <h3>الملل السريع</h3>
+                    <p>تشعر بالملل من أي نشاط طبيعي خلال دقائق. الصبر شبه معدوم.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-num">02</div>
+                    <div class="problem-icon">🎯</div>
+                    <h3>ضعف التركيز</h3>
+                    <p>لا تستطيع قراءة صفحة أو إنجاز مهمة دون الانجراف لهاتفك كل دقيقتين.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-num">03</div>
+                    <div class="problem-icon">😔</div>
+                    <h3>الفراغ العاطفي</h3>
+                    <p>اللحظات الهادئة تشعرك بالضيق — تحتاج لمحفّز مستمر لتشعر بشيء.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-num">04</div>
+                    <div class="problem-icon">⚡</div>
+                    <h3>ضعف الإرادة</h3>
+                    <p>تعرف إنك لازم تذاكر أو تنام مبكر، لكن لا تستطيع إيقاف التمرير.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-num">05</div>
+                    <div class="problem-icon">📉</div>
+                    <h3>فقدان الحافز</h3>
+                    <p>الأهداف الكبيرة تبدو مرهقة — عقلك اعتاد على المكافأة الفورية فقط.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-num">06</div>
+                    <div class="problem-icon">😟</div>
+                    <h3>القلق والتوتر</h3>
+                    <p>الإفراط في المنبّهات يُنهك الجهاز العصبي ويرفع مستوى الكورتيزول باستمرار.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- HOW IT WORKS + PROTOCOL -->
+    <div class="bg-charcoal">
+        <div class="container">
+            <section id="protocol" class="section">
+                <div class="section-header reveal">
+                    <div class="section-tag" style="background:rgba(243,156,18,0.15); color:var(--accent); border-color:rgba(243,156,18,0.3)">🔄 كيف يعمل</div>
+                    <h2 class="section-title" style="color:white">آلية Dopamine Detox</h2>
+                    <p class="section-sub" style="color:rgba(255,255,255,0.5)">الفكرة بسيطة — ابتعد عن المحفّزات العالية لتُعيد ضبط حساسية دماغك</p>
+                </div>
+                <div class="detox-steps" style="margin-bottom:48px">
+                    <div class="detox-step reveal">
+                        <div class="detox-step-num">1</div>
+                        <h3>الامتناع</h3>
+                        <p>توقف عن المحفّزات العالية لفترة محددة — من ساعات لأيام.</p>
+                    </div>
+                    <div class="detox-step reveal">
+                        <div class="detox-step-num">2</div>
+                        <h3>إعادة الضبط</h3>
+                        <p>مستقبلات الدوبامين تعود لحساسيتها الطبيعية تدريجياً.</p>
+                    </div>
+                    <div class="detox-step reveal">
+                        <div class="detox-step-num">3</div>
+                        <h3>إعادة الاتصال</h3>
+                        <p>تبدأ تستمتع بالأشياء البسيطة — الطبيعة، القراءة، الصمت.</p>
+                    </div>
+                    <div class="detox-step reveal">
+                        <div class="detox-step-num">4</div>
+                        <h3>السيطرة</h3>
+                        <p>تعود إرادتك وقدرتك على الاختيار الواعي بدلاً من الاندفاع.</p>
+                    </div>
+                </div>
+
+                <div class="protocol-grid">
+                    <div class="protocol-box protocol-avoid reveal">
+                        <h3>❌ تجنّب خلال الديتوكس</h3>
+                        <ul class="protocol-list">
+                            <li>السوشيال ميديا بجميع أنواعها</li>
+                            <li>مقاطع الفيديو القصيرة (Reels, TikTok, Shorts)</li>
+                            <li>الألعاب الإلكترونية</li>
+                            <li>الأكل الغير صحي والسكريات</li>
+                            <li>موسيقى سريعة الإيقاع</li>
+                            <li>التسوق الإلكتروني والتصفح العشوائي</li>
+                            <li>المسلسلات والأفلام الترفيهية</li>
+                        </ul>
+                    </div>
+                    <div class="protocol-box protocol-do reveal">
+                        <h3>✅ افعل بدلاً من ذلك</h3>
+                        <ul class="protocol-list">
+                            <li>المشي في الطبيعة أو الهواء الطلق</li>
+                            <li>القراءة الورقية — كتب أو قرآن</li>
+                            <li>الكتابة اليدوية والتدوين</li>
+                            <li>التأمل والتنفس العميق</li>
+                            <li>التحدث وجهاً لوجه مع الناس</li>
+                            <li>ممارسة الرياضة أو تعلم مهارة يدوية</li>
+                            <li>الجلوس في الصمت بوعي</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- LEVELS -->
+        <section id="levels" class="section">
+            <div class="section-header reveal">
+                <div class="section-tag tag-amber">📊 اختر مستواك</div>
+                <h2 class="section-title">مستويات الديتوكس</h2>
+                <p class="section-sub">ابدأ من حيث أنت الآن — ولا تقفز لمستوى فوق طاقتك</p>
+            </div>
+            <div class="levels-grid">
+                <div class="level-card level-easy reveal">
+                    <span class="level-badge badge-easy">مبتدئ</span>
+                    <h3>ديتوكس خفيف</h3>
+                    <div class="duration">⏱️ 4–6 ساعات</div>
+                    <p>مثالي للبداية. قلّل المحفّزات لفترة قصيرة وابدأ بلاحظ الفرق في تركيزك.</p>
+                    <div class="level-activities">
+                        <span class="activity-tag">بدون سوشيال ميديا</span>
+                        <span class="activity-tag">بدون فيديو</span>
+                        <span class="activity-tag">مشي + قراءة</span>
+                    </div>
+                </div>
+                <div class="level-card level-medium reveal">
+                    <span class="level-badge badge-medium">متوسط</span>
+                    <h3>يوم كامل</h3>
+                    <div class="duration">⏱️ 24 ساعة</div>
+                    <p>تحدي حقيقي. يوم واحد بدون شاشات ومنبّهات — ستشعر بفرق كبير في اليوم التالي.</p>
+                    <div class="level-activities">
+                        <span class="activity-tag">بدون هاتف</span>
+                        <span class="activity-tag">طبيعة</span>
+                        <span class="activity-tag">تأمل</span>
+                        <span class="activity-tag">كتابة</span>
+                    </div>
+                </div>
+                <div class="level-card level-hard reveal">
+                    <span class="level-badge badge-hard">متقدم</span>
+                    <h3>أسبوع التحوّل</h3>
+                    <div class="duration">⏱️ 7 أيام</div>
+                    <p>للجادين فقط. أسبوع كامل من إعادة الضبط الشاملة — النتائج مذهلة وتدوم.</p>
+                    <div class="level-activities">
+                        <span class="activity-tag">خطة يومية كاملة</span>
+                        <span class="activity-tag">عادات جديدة</span>
+                        <span class="activity-tag">تقييم يومي</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- BENEFITS -->
+    <div style="background: var(--cream); padding: 80px 0;">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag tag-green">🌱 النتائج</div>
+                <h2 class="section-title" id="benefits">ماذا ستحصل بعد الديتوكس؟</h2>
+                <p class="section-sub">فوائد موثّقة علمياً — تبدأ تظهر من أول 24 ساعة</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>تركيز أعمق</h3>
+                    <p>قدرتك على التركيز لفترات طويلة تعود تدريجياً — الدراسة والعمل يصبحان أسهل.</p>
+                    <span class="benefit-timeline">⏱️ يظهر خلال 24–48 ساعة</span>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">😊</div>
+                    <h3>سعادة حقيقية</h3>
+                    <p>تعود تستمتع بالأشياء البسيطة — فنجان قهوة، محادثة، منظر جميل.</p>
+                    <span class="benefit-timeline">⏱️ يظهر خلال 3–5 أيام</span>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">💪</div>
+                    <h3>إرادة أقوى</h3>
+                    <p>مقاومة الإغراءات تصبح أسهل بكثير — قراراتك تصبح واعية لا اندفاعية.</p>
+                    <span class="benefit-timeline">⏱️ يظهر خلال أسبوع</span>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>وضوح ذهني</h3>
+                    <p>الضبابية الذهنية تختفي — أفكارك تصبح أوضح وقراراتك أكثر حكمة.</p>
+                    <span class="benefit-timeline">⏱️ يظهر خلال 3 أيام</span>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">😴</div>
+                    <h3>نوم أفضل</h3>
+                    <p>بدون محفّزات ليلية، الميلاتونين يعمل بشكل طبيعي وتنام بعمق أكبر.</p>
+                    <span class="benefit-timeline">⏱️ يظهر من الليلة الأولى</span>
+                </div>
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>حافز للأهداف</h3>
+                    <p>أهدافك الحقيقية تبدأ تبدو ممكنة ومُشوّقة بدلاً من مرهقة.</p>
+                    <span class="benefit-timeline">⏱️ يظهر خلال أسبوع</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUOTE -->
+    <section class="quote-section">
+        <div class="quote-inner">
+            <p class="quote-text">"أكبر إدمان في عصرنا لا يُباع في الصيدليات — يُباع مجاناً في متاجر التطبيقات."</p>
+            <span class="quote-author">— تأمّل في ذلك</span>
+            <br><br>
+            <p class="quote-text" style="font-size:1.1rem; opacity:0.75">"من لا يسيطر على وقته، يسيطر عليه غيره."</p>
+            <span class="quote-author">— مبدأ الإدارة الذاتية</span>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>صُنع بوعي لمساعدتك على استعادة دماغك | <strong>نشاط Dopamine Detox Coach</strong> | &copy; 2026 — كلية علوم الصحة</p>
+    </footer>
+
+    <script>
+        // Floating molecules
+        const molContainer = document.getElementById('molContainer');
+        const colors = ['rgba(192,57,43,0.5)', 'rgba(243,156,18,0.5)', 'rgba(108,52,131,0.4)'];
+
+        for (let i = 0; i < 25; i++) {
+            const mol = document.createElement('div');
+            mol.classList.add('mol');
+            const size = 4 + Math.random() * 8;
+            mol.style.cssText = `
+                width: ${size}px;
+                height: ${size}px;
+                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                left: ${Math.random() * 100}%;
+                --dur: ${6 + Math.random() * 10}s;
+                animation-delay: ${Math.random() * 10}s;
+            `;
+            molContainer.appendChild(mol);
+        }
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), 80 * i);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+
+        reveals.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
